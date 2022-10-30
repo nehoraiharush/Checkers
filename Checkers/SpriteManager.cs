@@ -8,5 +8,7 @@ namespace Checkers
 {
     class SpriteManager
     {
+        public static string blackPoen_image = "pics/blackPoen.png";
+        public static string whitePoen_image = "pics/whitePoen.png";
     }
 }

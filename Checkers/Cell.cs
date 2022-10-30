@@ -16,13 +16,17 @@ namespace Checkers
 
         public Cell(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            this.x = x * SettingsManger.CellSize + SettingsManger.BoardMarginLeft;
+            this.y = y * SettingsManger.CellSize + SettingsManger.BoardMarginTop;
+
             this.BackColor = GetCellColor(x,y);
             this.Width = SettingsManger.CellSize;
             this.Height = SettingsManger.CellSize;
             this.Location = GetLocation(x,y);
-            
+            if(y <= 2 && (x + y) % 2 == 0)
+                this.Image = Image.FromFile(SpriteManager.whitePoen_image);
+            else if(y >= 5 && (x + y) % 2 == 0)
+                this.Image = Image.FromFile(SpriteManager.blackPoen_image);
         }
 
 

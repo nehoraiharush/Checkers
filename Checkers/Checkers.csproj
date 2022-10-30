@@ -50,6 +50,9 @@
     <Compile Include="Cell.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="King.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Peon.cs">
       <SubType>Component</SubType>
     </Compile>
