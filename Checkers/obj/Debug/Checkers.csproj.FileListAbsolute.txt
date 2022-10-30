@@ -1,7 +1,6 @@
 C:\Users\nehor\source\repos\Checkers\Checkers\bin\Debug\Checkers.exe.config
 C:\Users\nehor\source\repos\Checkers\Checkers\bin\Debug\Checkers.exe
 C:\Users\nehor\source\repos\Checkers\Checkers\bin\Debug\Checkers.pdb
-C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.csproj.AssemblyReference.cache
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.Form1.resources
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.GameForm.resources
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.Properties.Resources.resources
@@ -9,3 +8,4 @@ C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.csproj.Generate
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.csproj.CoreCompileInputs.cache
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.exe
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.pdb
+C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.csproj.AssemblyReference.cache
