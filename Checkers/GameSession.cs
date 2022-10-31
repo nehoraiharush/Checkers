@@ -20,8 +20,8 @@ namespace Checkers
             GameSession.context = context;
             board = new Board(context);
         }
-        //not done yet
-        public static void SizeChanged(float widthRatio, float heightRatio)
+        
+        public static void SizeChanged(int formWidth, int formHeight)
         {
             cells = board.GetCells();
 
@@ -29,7 +29,7 @@ namespace Checkers
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    cells[i, j].SetLocation(widthRatio, heightRatio);
+                    cells[i, j].SetLocation(formWidth, formHeight);
                 }
             }
 

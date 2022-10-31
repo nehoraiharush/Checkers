@@ -29,13 +29,11 @@ namespace Checkers
 
             GameSession.Start(this);
         }
-        //not done yet
+        
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            MessageBox.Show($"HII {this.Size.Width} / {oldSizeWidth} = {(this.Size.Width / oldSizeWidth)} \n" +
-                $" {this.Size.Height} / {oldSizeHeight} = {(this.Size.Height / oldSizeHeight)} ");
             if(oldSizeHeight != 0 && oldSizeWidth != 0) 
-                GameSession.SizeChanged( (this.Size.Width / oldSizeWidth), (this.Size.Height / oldSizeHeight) );
+                GameSession.SizeChanged( this.Size.Width , this.Size.Height );
         }
     }
 }

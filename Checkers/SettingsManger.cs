@@ -15,6 +15,8 @@ namespace Checkers
         public static int BoardMarginTop = 50;
         public static int BoardMarginLeft = 175;
 
-        public static int CellSize = 50; 
+        public static int CellSize = 50;
+
+        public static int boardSize = CellSize * 8;
     }
 }
