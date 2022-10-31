@@ -17,8 +17,8 @@ namespace Checkers
             InitializeComponent();
         }
 
-        private float oldSizeWidth = 0;
-        private float oldSizeHeight = 0;
+        private int oldSizeWidth = 0;
+        private int oldSizeHeight = 0;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -32,8 +32,25 @@ namespace Checkers
         
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            if(oldSizeHeight != 0 && oldSizeWidth != 0) 
-                GameSession.SizeChanged( this.Size.Width , this.Size.Height );
+            if (oldSizeHeight != 0 && oldSizeWidth != 0)
+            {
+                if (this.Size.Width < SettingsManger.boardSize || this.Size.Height < SettingsManger.boardSize)
+                {
+                    MessageBox.Show("Error: Cannot resize below the board's size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Size = new Size(800, 553);
+                }
+                else
+                {
+                    GameSession.SizeChanged(this.Size.Width, this.Size.Height);
+                    oldSizeHeight = this.Size.Height;
+                    oldSizeWidth = this.Size.Width;
+                }
+            }
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

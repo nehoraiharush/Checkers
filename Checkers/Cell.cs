@@ -48,6 +48,7 @@ namespace Checkers
                 x = (formWidth - SettingsManger.boardSize) / 2;
                 y = (formHeight - SettingsManger.boardSize) / 2;
             }
+            
 
             this.Location = new Point( this.x * SettingsManger.CellSize + x,
                 this.y * SettingsManger.CellSize + y);
