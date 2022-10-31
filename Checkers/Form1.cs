@@ -17,8 +17,8 @@ namespace Checkers
             InitializeComponent();
         }
 
-        private int oldSizeWidth = 0;
-        private int oldSizeHeight = 0;
+        private float oldSizeWidth = 0;
+        private float oldSizeHeight = 0;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -32,7 +32,8 @@ namespace Checkers
         //not done yet
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            MessageBox.Show($"HII {this.Size.Width} / {oldSizeWidth}  {this.Size.Height} / {oldSizeHeight}  ");
+            MessageBox.Show($"HII {this.Size.Width} / {oldSizeWidth} = {(this.Size.Width / oldSizeWidth)} \n" +
+                $" {this.Size.Height} / {oldSizeHeight} = {(this.Size.Height / oldSizeHeight)} ");
             if(oldSizeHeight != 0 && oldSizeWidth != 0) 
                 GameSession.SizeChanged( (this.Size.Width / oldSizeWidth), (this.Size.Height / oldSizeHeight) );
         }

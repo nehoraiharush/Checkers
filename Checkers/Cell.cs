@@ -50,10 +50,10 @@ namespace Checkers
             //TODO: make it always in the middle of the screen
         }
         //not done yet
-        public void SetLocation(int widthRatio, int heightRatio)
+        public void SetLocation(float widthRatio, float heightRatio)
         {
-            this.Location = new Point(this.x * SettingsManger.CellSize + (widthRatio * SettingsManger.BoardMarginLeft ),
-                this.y * SettingsManger.CellSize + (heightRatio * SettingsManger.BoardMarginTop ));
+            this.Location = new Point( (int) ( this.x * SettingsManger.CellSize + (widthRatio * SettingsManger.BoardMarginLeft )),
+                (int) (this.y * SettingsManger.CellSize + (heightRatio * SettingsManger.BoardMarginTop )));
         }
     }
 }

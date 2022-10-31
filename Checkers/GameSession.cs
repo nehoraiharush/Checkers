@@ -21,7 +21,7 @@ namespace Checkers
             board = new Board(context);
         }
         //not done yet
-        public static void SizeChanged(int widthRatio, int heightRatio)
+        public static void SizeChanged(float widthRatio, float heightRatio)
         {
             cells = board.GetCells();
 
