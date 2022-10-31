@@ -41,6 +41,7 @@
             this.Name = "Form1";
             this.Text = "Checkers";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.ResumeLayout(false);
 
         }

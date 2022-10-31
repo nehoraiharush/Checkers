@@ -26,5 +26,7 @@ namespace Checkers
                 }
             }
         }
+
+        public Cell[,] GetCells() { return this.cells; }
     }
 }

@@ -12,12 +12,27 @@ namespace Checkers
     {
         private static Board board;
         private static Form context;
+        private static Cell[,] cells;
 
 
         public static void Start(Form context)
         {
             GameSession.context = context;
             board = new Board(context);
+        }
+        //not done yet
+        public static void SizeChanged(int widthRatio, int heightRatio)
+        {
+            cells = board.GetCells();
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    cells[i, j].SetLocation(widthRatio, heightRatio);
+                }
+            }
+
         }
     }
 }

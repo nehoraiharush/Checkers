@@ -15,11 +15,7 @@ namespace Checkers
         public King(int x, int y, PlayerTeam team) : base(x, y)
         {
             this.team = team;
-
-            if (team == PlayerTeam.Black)
-                this.Image = Image.FromFile(SpriteManager.blackKingPoen);
-            else if(team == PlayerTeam.White)
-                this.Image = Image.FromFile(SpriteManager.whiteKingPoen);
+            this.Image = SpriteManager.GetKingSprite(team);
         }
     }
 }

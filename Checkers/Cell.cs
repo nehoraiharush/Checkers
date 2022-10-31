@@ -16,10 +16,9 @@ namespace Checkers
 
 
         public Cell(int x, int y)
-        {
-            //changed it because untill now it contained the indexes of the current cell and not the x-value and y-value
-            this.x = x * SettingsManger.CellSize + SettingsManger.BoardMarginLeft;
-            this.y = y * SettingsManger.CellSize + SettingsManger.BoardMarginTop;
+        {            
+            this.x = x;
+            this.y = y;
 
             this.BackColor = GetCellColor(x,y);
             this.Width = SettingsManger.CellSize;
@@ -37,7 +36,7 @@ namespace Checkers
 
 
 
-        public static Color GetCellColor(int x, int y){
+        public Color GetCellColor(int x, int y){
             if ((x + y) % 2 == 0)
             {
                 return SettingsManger.ColorWhiteCellColor;
@@ -49,6 +48,12 @@ namespace Checkers
             return new Point(x * SettingsManger.CellSize +  SettingsManger.BoardMarginLeft ,
                 y * SettingsManger.CellSize + SettingsManger.BoardMarginTop);
             //TODO: make it always in the middle of the screen
+        }
+        //not done yet
+        public void SetLocation(int widthRatio, int heightRatio)
+        {
+            this.Location = new Point(this.x * SettingsManger.CellSize + (widthRatio * SettingsManger.BoardMarginLeft ),
+                this.y * SettingsManger.CellSize + (heightRatio * SettingsManger.BoardMarginTop ));
         }
     }
 }

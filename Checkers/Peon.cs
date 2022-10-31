@@ -15,11 +15,7 @@ namespace Checkers
         public Peon(int x, int y, PlayerTeam team): base(x,y){
 
             this.team = team;
-
-            if (team == PlayerTeam.Black)
-                this.Image = Image.FromFile(SpriteManager.blackPoen_image);
-            else if (team == PlayerTeam.White)
-                this.Image = Image.FromFile(SpriteManager.whitePoen_image);
+            this.Image = SpriteManager.GetPoenSprite(team);
         }
     }
 }
