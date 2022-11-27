@@ -10,21 +10,29 @@ namespace Checkers
 {
     class Cell : Label
     {
-        private int x;
-        private int y;
+        Point point;
 
 
 
         public Cell(int x, int y)
         {            
-            this.x = x;
-            this.y = y;
+            this.point = new Point(x, y);
 
             this.BackColor = GetCellColor(x,y);
             this.Width = SettingsManger.CellSize;
             this.Height = SettingsManger.CellSize;
             SetLocation(0,0);
 
+        }
+
+        public Cell(Point point)
+        {
+            this.point = point;
+
+            this.BackColor = GetCellColor(point.X, point.Y);
+            this.Width = SettingsManger.CellSize;
+            this.Height = SettingsManger.CellSize;
+            SetLocation(0, 0);
         }
 
 
@@ -50,8 +58,18 @@ namespace Checkers
             }
             
 
-            this.Location = new Point( this.x * SettingsManger.CellSize + x,
-                this.y * SettingsManger.CellSize + y);
+            this.Location = new Point( this.point.X * SettingsManger.CellSize + x,
+                this.point.Y * SettingsManger.CellSize + y);
+        }
+
+        public Point GetPoint()
+        {
+            return this.point;
+        }
+
+        public void SetPoint(Point point)
+        {
+            this.point = point;
         }
     }
 }

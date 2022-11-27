@@ -9,3 +9,15 @@ C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.csproj.CoreComp
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.exe
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.pdb
 C:\Users\nehor\source\repos\Checkers\Checkers\obj\Debug\Checkers.csproj.AssemblyReference.cache
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\bin\Debug\Checkers.exe.config
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\bin\Debug\Checkers.exe
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\bin\Debug\Checkers.pdb
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.csproj.AssemblyReference.cache
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.csproj.SuggestedBindingRedirects.cache
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.Form1.resources
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.GameForm.resources
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.Properties.Resources.resources
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.csproj.GenerateResource.cache
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.csproj.CoreCompileInputs.cache
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.exe
+C:\Users\s.mogi\Documents\GitHub\Checkers\Checkers\obj\Debug\Checkers.pdb

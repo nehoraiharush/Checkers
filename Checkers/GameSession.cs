@@ -12,18 +12,20 @@ namespace Checkers
     {
         private static Board board;
         private static Form context;
-        private static Cell[,] cells;
+        private static PlayerTeam playerUp;
 
 
         public static void Start(Form context)
         {
             GameSession.context = context;
             board = new Board(context);
+            //TODO:: make the player up varuble dynamicly
+            GameSession.playerUp = PlayerTeam.White;
         }
         
         public static void SizeChanged(int formWidth, int formHeight)
         {
-            cells = board.GetCells();
+            Cell[,] cells = board.GetCells();
 
             for (int i = 0; i < 8; i++)
             {
@@ -33,6 +35,11 @@ namespace Checkers
                 }
             }
 
+        }
+
+        public static bool MovesDown(PlayerTeam team)
+        {
+            return playerUp == team;
         }
     }
 }
