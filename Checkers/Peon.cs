@@ -28,7 +28,14 @@ namespace Checkers
             this.Click += new EventHandler(ShowMoves);
         }
 
-        public virtual void ShowMoves(object obj, EventArgs e)
+        public void ShowMoves(object obj, EventArgs e)
+        {
+            if (!GameSession.IsMyTurn(team)) return;
+            Board.Instance.RemoveMoveCells();
+            CheckMoves(this.GetPoint());
+        }
+
+        public virtual void CheckMoves(Point point)
         {
             //check how to chnage the y cordinate
             int ym = -1;
@@ -38,24 +45,36 @@ namespace Checkers
             }
 
             //check the right corner
-            Point rightCorner = new Point(this.GetPoint().X - 1, this.GetPoint().Y + ym);
-            if (Board.Instance.InBounds(rightCorner) &&Board.Instance.IsEmpty(rightCorner))
+            Point rightCorner = new Point(point.X - 1, point.Y + ym);
+            if (Board.Instance.InBounds(rightCorner) && Board.Instance.IsEmpty(rightCorner))
             {
-                Board.Instance.AddMoveCell(rightCorner,this);
+                Board.Instance.AddMoveCell(rightCorner, this);
             }
             else
             {
-                //implement later
+                Point eatPoint = new Point(point.X - 2, point.Y + ym * 2);
+                if(Board.Instance.InBounds(eatPoint) && Board.Instance.IsEmpty(eatPoint))
+                {
+                    Board.Instance.AddMoveCell(eatPoint, this);
+                    CheckMoves(eatPoint);
+                }
             }
 
-            //check the right corner
-            Point leftcorner = new Point(this.GetPoint().X +1, this.GetPoint().Y + ym);
+            //check the left corner
+            Point leftcorner = new Point(point.X + 1, point.Y + ym);
             if (Board.Instance.InBounds(leftcorner) && Board.Instance.IsEmpty(leftcorner))
             {
                 Board.Instance.AddMoveCell(leftcorner, this);
             }
+            else
+            {
+                Point eatPoint = new Point(point.X + 2, point.Y + ym * 2);
+                if (Board.Instance.InBounds(eatPoint) && Board.Instance.IsEmpty(eatPoint))
+                {
+                    Board.Instance.AddMoveCell(eatPoint, this);
+                    CheckMoves(eatPoint);
+                }
+            }
         }
-
-
     }
 }

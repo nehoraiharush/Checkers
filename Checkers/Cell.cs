@@ -12,8 +12,6 @@ namespace Checkers
     {
         Point point;
 
-
-
         public Cell(int x, int y)
         {            
             this.point = new Point(x, y);
@@ -70,6 +68,7 @@ namespace Checkers
         public void SetPoint(Point point)
         {
             this.point = point;
+            SetLocation(0,0);
         }
     }
 }

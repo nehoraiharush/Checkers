@@ -13,7 +13,8 @@ namespace Checkers
         private static Board board;
         private static Form context;
         private static PlayerTeam playerUp;
-
+        private static Stack<IMoveCommand> movesDone = new Stack<IMoveCommand>();
+        private static PlayerTeam currentTeam = PlayerTeam.White;
 
         public static void Start(Form context)
         {
@@ -40,6 +41,41 @@ namespace Checkers
         public static bool MovesDown(PlayerTeam team)
         {
             return playerUp == team;
+        }
+
+        public static void ExecuteMove(IMoveCommand move)
+        {
+            Console.WriteLine("Executing Command " + move);
+            move.Execute();
+            movesDone.Push(move);
+            SwitchTeams();
+        }
+
+        public static void RevertLastMove()
+        {
+            IMoveCommand move = movesDone.Pop();
+            move.Revert();
+            SwitchTeams();
+        }
+
+        public static bool IsMyTurn(PlayerTeam team)
+        {
+            return team == currentTeam;
+        }
+
+
+
+
+        private static void SwitchTeams()
+        {
+            if (currentTeam == PlayerTeam.White)
+            {
+                currentTeam = PlayerTeam.Black;
+            }
+            else
+            {
+                currentTeam = PlayerTeam.White;
+            }
         }
     }
 }

@@ -31,7 +31,9 @@ namespace Checkers
 
         private void OnClickAction(object obj, EventArgs e)
         {
-            Board.Instance.MovePiece(caller.GetPoint(), this.GetPoint());
+            Board.Instance.RemoveMoveCells();
+            RegularMove move = new RegularMove(caller.GetPoint(), this.GetPoint());
+            GameSession.ExecuteMove(move);
         }
     }
 }

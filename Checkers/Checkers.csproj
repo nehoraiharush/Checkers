@@ -53,6 +53,7 @@
     <Compile Include="EatCell.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="IMoveCommand.cs" />
     <Compile Include="King.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -78,6 +79,7 @@
     <Compile Include="GameSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegularMove.cs" />
     <Compile Include="SettingsManger.cs" />
     <Compile Include="SpriteManager.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -107,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="moves\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
