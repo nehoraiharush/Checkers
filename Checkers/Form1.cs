@@ -38,6 +38,7 @@ namespace Checkers
                 {
                     MessageBox.Show("Error: Cannot resize below the board's size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Size = new Size(800, 553);
+                    this.CenterToScreen();
                 }
                 else
                 {

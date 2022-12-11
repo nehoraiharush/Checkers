@@ -48,12 +48,13 @@ namespace Checkers
             return SettingsManger.ColorBlackCellColor;
         }
 
-        public Point GetLocation(int x, int y){ return this.Location; }
+        public Point GetLocation(){ return this.Location; }
 
         public void SetLocation()
         {
-            this.Location = new Point( this.point.X * SettingsManger.CellSize,
-                this.point.Y * SettingsManger.CellSize);
+            this.Location = 
+                new Point( this.point.X * SettingsManger.CellSize + SettingsManger.BoardMarginLeft,
+                this.point.Y * SettingsManger.CellSize + SettingsManger.BoardMarginTop);
         }
 
         public Point GetPoint()
