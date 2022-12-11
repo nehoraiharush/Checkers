@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Checkers
 {
-    public class EatMove: IMoveCommand
+    internal class EatMove: IMoveCommand
     {
         private List<Peon> eatenCells;
         private Peon peon;

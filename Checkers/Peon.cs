@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Checkers
 {
-    class Peon : Cell
+    internal class Peon : Cell
     {
         private PlayerTeam team;
 
