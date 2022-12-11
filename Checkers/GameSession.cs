@@ -32,7 +32,7 @@ namespace Checkers
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    cells[i, j].SetLocation(formWidth, formHeight);
+                    cells[i, j].SetLocation();
                 }
             }
 

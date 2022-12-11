@@ -19,10 +19,16 @@ namespace Checkers
             this.BackColor = GetCellColor(x,y);
             this.Width = SettingsManger.CellSize;
             this.Height = SettingsManger.CellSize;
-            SetLocation(0,0);
+            SetLocation();
 
         }
 
+        public void Destroy()
+        {
+            this.Visible = false;
+            this.Dispose();
+        }
+        
         public Cell(Point point)
         {
             this.point = point;
@@ -30,7 +36,7 @@ namespace Checkers
             this.BackColor = GetCellColor(point.X, point.Y);
             this.Width = SettingsManger.CellSize;
             this.Height = SettingsManger.CellSize;
-            SetLocation(0, 0);
+            SetLocation();
         }
 
 
@@ -43,21 +49,11 @@ namespace Checkers
         }
 
         public Point GetLocation(int x, int y){ return this.Location; }
-        
-        public void SetLocation(int formWidth, int formHeight)
+
+        public void SetLocation()
         {
-            int x = SettingsManger.BoardMarginLeft;
-            int y = SettingsManger.BoardMarginTop;
-
-            if (formHeight > 0 && formWidth > 0)
-            {
-                x = (formWidth - SettingsManger.boardSize) / 2;
-                y = (formHeight - SettingsManger.boardSize) / 2;
-            }
-            
-
-            this.Location = new Point( this.point.X * SettingsManger.CellSize + x,
-                this.point.Y * SettingsManger.CellSize + y);
+            this.Location = new Point( this.point.X * SettingsManger.CellSize,
+                this.point.Y * SettingsManger.CellSize);
         }
 
         public Point GetPoint()
@@ -68,7 +64,7 @@ namespace Checkers
         public void SetPoint(Point point)
         {
             this.point = point;
-            SetLocation(0,0);
+            SetLocation();
         }
     }
 }

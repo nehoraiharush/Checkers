@@ -53,6 +53,7 @@
     <Compile Include="EatCell.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EatMove.cs" />
     <Compile Include="IMoveCommand.cs" />
     <Compile Include="King.cs">
       <SubType>Component</SubType>

@@ -12,6 +12,7 @@ namespace Checkers
         public static Color ColorWhiteCellColor = Color.White;
         public static Color ColorBlackCellColor = Color.Black;
         public static Color OptionCellColor = Color.Cyan;
+        public static Color EatCellColor = Color.Red;
         
         public static int BoardMarginTop = 50;
         public static int BoardMarginLeft = 175;

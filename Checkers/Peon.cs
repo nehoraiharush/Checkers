@@ -27,6 +27,11 @@ namespace Checkers
 
             this.Click += new EventHandler(ShowMoves);
         }
+        
+        public PlayerTeam GetTeam()
+        {
+            return team;
+        }
 
         public void ShowMoves(object obj, EventArgs e)
         {
@@ -35,44 +40,65 @@ namespace Checkers
             CheckMoves(this.GetPoint());
         }
 
-        public virtual void CheckMoves(Point point)
+        public virtual void CheckMoves(Point point, bool wasEatingOption = false)
         {
-            //check how to chnage the y cordinate
-            int ym = -1;
-            if (GameSession.MovesDown(this.team))
-            {
-                ym = 1;
-            }
-
+            //check how to change the y coordinate
+            int yChange = GameSession.MovesDown(team) ? 1 : -1;
+            
             //check the right corner
-            Point rightCorner = new Point(point.X - 1, point.Y + ym);
-            if (Board.Instance.InBounds(rightCorner) && Board.Instance.IsEmpty(rightCorner))
+            Point rightCorner = new Point(point.X + 1, point.Y + yChange);
+            Console.WriteLine("Checking right corner: " + rightCorner);
+            if (Board.Instance.InBounds(rightCorner))
             {
-                Board.Instance.AddMoveCell(rightCorner, this);
-            }
-            else
-            {
-                Point eatPoint = new Point(point.X - 2, point.Y + ym * 2);
-                if(Board.Instance.InBounds(eatPoint) && Board.Instance.IsEmpty(eatPoint))
+                Console.WriteLine("\tIn bounds");
+                if (Board.Instance.IsEmpty(rightCorner))
                 {
-                    Board.Instance.AddMoveCell(eatPoint, this);
-                    CheckMoves(eatPoint);
+                    Console.WriteLine("\tEmpty");
+                    if (!wasEatingOption)
+                    {
+                        Console.WriteLine("\tthere is no eating option");
+                        Board.Instance.AddMoveCell(rightCorner, this);
+                    }
+                }
+                else if (Board.Instance.IsEnemy(rightCorner, team))
+                {
+                    Console.WriteLine("\tEnemy");
+                    Point rightCornerEating = new Point(rightCorner.X + 1, rightCorner.Y + yChange);
+                    if (Board.Instance.InBounds(rightCornerEating) && Board.Instance.IsEmpty(rightCornerEating))
+                    {
+                        Console.WriteLine("\tEating option");
+                        Board.Instance.AddEatCell(rightCornerEating, this);
+                        CheckMoves(rightCornerEating, true);
+                    }
                 }
             }
-
+            
             //check the left corner
-            Point leftcorner = new Point(point.X + 1, point.Y + ym);
-            if (Board.Instance.InBounds(leftcorner) && Board.Instance.IsEmpty(leftcorner))
+            Point leftCorner = new Point(point.X - 1, point.Y + yChange);
+            Console.WriteLine("Checking left corner: " + leftCorner);
+            if (Board.Instance.InBounds(leftCorner))
             {
-                Board.Instance.AddMoveCell(leftcorner, this);
-            }
-            else
-            {
-                Point eatPoint = new Point(point.X + 2, point.Y + ym * 2);
-                if (Board.Instance.InBounds(eatPoint) && Board.Instance.IsEmpty(eatPoint))
+                Console.WriteLine("\tIn bounds");
+                if (Board.Instance.IsEmpty(leftCorner))
                 {
-                    Board.Instance.AddMoveCell(eatPoint, this);
-                    CheckMoves(eatPoint);
+                    Console.WriteLine("\tEmpty");
+                    if (!wasEatingOption)
+                    {
+                        Console.WriteLine("\tthere is no eating option");
+                        Board.Instance.AddMoveCell(leftCorner, this);
+                    }
+                }
+                else if (Board.Instance.IsEnemy(leftCorner, team))
+                {
+                    Console.WriteLine("\tEnemy");
+                    //go check for eating options
+                    Point leftCornerEating = new Point(leftCorner.X - 1, leftCorner.Y + yChange);
+                    if (Board.Instance.InBounds(leftCornerEating) && Board.Instance.IsEmpty(leftCornerEating))
+                    {
+                        Console.WriteLine("\tEating option");
+                        Board.Instance.AddEatCell(leftCornerEating, this);
+                        CheckMoves(leftCornerEating, true);
+                    }
                 }
             }
         }

@@ -11,7 +11,7 @@ namespace Checkers
     {
         public EatCell(Point point, Cell caller): base(point, caller)
         {
-
+            this.BackColor = SettingsManger.EatCellColor;
         }
     }
 }

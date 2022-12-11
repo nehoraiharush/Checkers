@@ -50,9 +50,24 @@ namespace Checkers
             return point.X >= 0 && point.Y >= 0 && point.X < 8 && point.Y < 8;
             //TODO: make the size as a varuble
         }
+        
+        public void AddPeon(Point point, PlayerTeam team)
+        {
+            context.Controls.Remove(cells[point.X, point.Y]);
+            cells[point.X,point.Y] = new Peon(point, team);
+            context.Controls.Add(cells[point.X, point.Y]);
+        }
+        
+        public void RemovePeon(Point point)
+        {
+            context.Controls.Remove(cells[point.X, point.Y]);
+            cells[point.X, point.Y] = new Cell(point);
+            context.Controls.Add(cells[point.X, point.Y]);
+        }
 
         public void MovePiece(Point src, Point dst)
         {
+            context.Controls.Remove(cells[dst.X, dst.Y]);
             Cell cell = cells[src.X, src.Y];
             cell.SetPoint(dst);
             cells[dst.X, dst.Y] = cell;
@@ -68,8 +83,20 @@ namespace Checkers
 
         public void AddMoveCell(Point point, Cell caller)
         {
+            Console.WriteLine("Adding Move Cell at: " + point.X + ", " + point.Y);
+            cells[point.X, point.Y].Destroy();
             context.Controls.Remove(cells[point.X, point.Y]);
             MoveCell moveCell = new MoveCell(point, caller);
+            cells[point.X, point.Y] = moveCell;
+            context.Controls.Add(moveCell);
+            moves.Add(moveCell);
+        }
+
+        public void AddEatCell(Point point, Cell caller)
+        {
+            cells[point.X, point.Y].Destroy();
+            context.Controls.Remove(cells[point.X, point.Y]);
+            MoveCell moveCell = new EatCell(point, caller);
             cells[point.X, point.Y] = moveCell;
             context.Controls.Add(moveCell);
             moves.Add(moveCell);
@@ -87,6 +114,14 @@ namespace Checkers
                 context.Controls.Add(cells[moveCell.GetPoint().X,moveCell.GetPoint().Y]);
             }
             moves.Clear();
+        }
+
+        public bool IsEnemy(Point point, PlayerTeam team)
+        {
+            if(!Instance.InBounds(point))
+                return false;
+            if (!(Instance.cells[point.X, point.Y] is Peon)) return false;
+            return ((Peon)Instance.cells[point.X, point.Y]).GetTeam() != team;
         }
 
     }
