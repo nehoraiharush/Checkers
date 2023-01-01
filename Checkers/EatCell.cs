@@ -9,9 +9,10 @@ namespace Checkers
 {
     internal class EatCell: MoveCell
     {
-        public EatCell(Point point, Cell caller): base(point, caller)
+        private EatMove eatMove;
+        public EatCell(Point point, Peon caller, List<Peon> eatenPeons): base(point, caller)
         {
-            this.BackColor = SettingsManger.EatCellColor;
+            this.BackColor = SettingsManger.EatCellColor; 
         }
     }
 }

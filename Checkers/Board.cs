@@ -92,14 +92,21 @@ namespace Checkers
             moves.Add(moveCell);
         }
 
-        public void AddEatCell(Point point, Cell caller)
+        public Peon GetPeon(Point point)
         {
-            cells[point.X, point.Y].Destroy();
-            context.Controls.Remove(cells[point.X, point.Y]);
-            MoveCell moveCell = new EatCell(point, caller);
-            cells[point.X, point.Y] = moveCell;
-            context.Controls.Add(moveCell);
-            moves.Add(moveCell);
+            if (cells[point.X, point.Y] is Peon)
+            {
+                Peon peon = (Peon)cells[point.X, point.Y];
+                return peon;
+            }
+
+            return null;
+        }
+
+        public void AddEatCell(List<Peon> peonsToEat, Peon caller)
+        {
+            Console.WriteLine("Adding Eat Cell at: " + peonsToEat[0].GetPoint().X + ", " + peonsToEat[0].GetPoint().Y);
+            
         }
 
         public void RemoveMoveCells()

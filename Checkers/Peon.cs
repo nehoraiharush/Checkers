@@ -40,66 +40,59 @@ namespace Checkers
             CheckMoves(this.GetPoint());
         }
 
-        public virtual void CheckMoves(Point point, bool wasEatingOption = false)
+        public virtual void CheckMoves(Point point, List<EatCell> eatCells = null, List<Peon> eatenPeons = null)
         {
-            //check how to change the y coordinate
-            int yChange = GameSession.MovesDown(team) ? 1 : -1;
-            
-            //check the right corner
-            Point rightCorner = new Point(point.X + 1, point.Y + yChange);
-            Console.WriteLine("Checking right corner: " + rightCorner);
-            if (Board.Instance.InBounds(rightCorner))
+            if (eatCells == null) eatCells = new List<EatCell>();
+            if(eatenPeons == null) eatenPeons = new List<Peon>();
+            //check if we need to swap the y axis
+            int yMultiplier = GameSession.MovesDown(team) ? -1 : 1;
+            //check the left corner for eating options only
+            Point leftPoint = new Point(point.X - 1, point.Y + yMultiplier);
+            if (Board.Instance.IsEnemy(leftPoint, team))
             {
-                Console.WriteLine("\tIn bounds");
-                if (Board.Instance.IsEmpty(rightCorner))
+                Point leftEatPoint = new Point(point.X - 2, point.Y + yMultiplier * 2);
+                if (Board.Instance.IsEmpty(leftEatPoint))
                 {
-                    Console.WriteLine("\tEmpty");
-                    if (!wasEatingOption)
+                    Peon peon = Board.Instance.GetPeon(leftPoint);
+                    if (peon != null)
                     {
-                        Console.WriteLine("\tthere is no eating option");
-                        Board.Instance.AddMoveCell(rightCorner, this);
-                    }
-                }
-                else if (Board.Instance.IsEnemy(rightCorner, team))
-                {
-                    Console.WriteLine("\tEnemy");
-                    Point rightCornerEating = new Point(rightCorner.X + 1, rightCorner.Y + yChange);
-                    if (Board.Instance.InBounds(rightCornerEating) && Board.Instance.IsEmpty(rightCornerEating))
-                    {
-                        Console.WriteLine("\tEating option");
-                        Board.Instance.AddEatCell(rightCornerEating, this);
-                        CheckMoves(rightCornerEating, true);
+                        eatenPeons.Add(peon);
+                        eatCells.Add(new EatCell(leftEatPoint, this,eatenPeons));
+                        CheckMoves(leftEatPoint, eatCells, eatenPeons);
+                        eatenPeons.Remove(peon);
                     }
                 }
             }
-            
-            //check the left corner
-            Point leftCorner = new Point(point.X - 1, point.Y + yChange);
-            Console.WriteLine("Checking left corner: " + leftCorner);
-            if (Board.Instance.InBounds(leftCorner))
+            //check the right corner for eating options only
+            Point rightPoint = new Point(point.X + 1, point.Y + yMultiplier);
+            if (Board.Instance.IsEnemy(rightPoint, team))
             {
-                Console.WriteLine("\tIn bounds");
-                if (Board.Instance.IsEmpty(leftCorner))
+                Point rightEatPoint = new Point(point.X + 2, point.Y + yMultiplier * 2);
+                if (Board.Instance.IsEmpty(rightEatPoint))
                 {
-                    Console.WriteLine("\tEmpty");
-                    if (!wasEatingOption)
+                    Peon peon = Board.Instance.GetPeon(rightPoint);
+                    if (peon != null)
                     {
-                        Console.WriteLine("\tthere is no eating option");
-                        Board.Instance.AddMoveCell(leftCorner, this);
+                        eatenPeons.Add(peon);
+                        eatCells.Add(new EatCell(rightEatPoint, this, eatenPeons));
+                        CheckMoves(rightEatPoint, eatCells, eatenPeons);
+                        eatenPeons.Remove(peon);
                     }
                 }
-                else if (Board.Instance.IsEnemy(leftCorner, team))
-                {
-                    Console.WriteLine("\tEnemy");
-                    //go check for eating options
-                    Point leftCornerEating = new Point(leftCorner.X - 1, leftCorner.Y + yChange);
-                    if (Board.Instance.InBounds(leftCornerEating) && Board.Instance.IsEmpty(leftCornerEating))
-                    {
-                        Console.WriteLine("\tEating option");
-                        Board.Instance.AddEatCell(leftCornerEating, this);
-                        CheckMoves(leftCornerEating, true);
-                    }
-                }
+            }
+            //if there was no eating options, that means the player can do a regular move
+            if (eatCells.Count == 0) return;
+            //check the left corner for regular moves
+            Point leftMovePoint = new Point(point.X - 1, point.Y + yMultiplier);
+            if(Board.Instance.IsEmpty(leftMovePoint))
+            {
+                eatCells.Add(new EatCell(leftMovePoint, this, eatenPeons));
+            }
+            //check the right corner for regular moves
+            Point rightMovePoint = new Point(point.X + 1, point.Y + yMultiplier);
+            if (Board.Instance.IsEmpty(rightMovePoint))
+            {
+                eatCells.Add(new EatCell(rightMovePoint, this, eatenPeons));
             }
         }
     }

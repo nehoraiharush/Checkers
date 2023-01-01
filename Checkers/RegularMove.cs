@@ -17,6 +17,11 @@ namespace Checkers
             this.from = from;
             this.to = to;
         }
+        
+        public void ChangeDestination(Point to)
+        {
+            this.to = to;
+        }
 
         public void Execute()
         {
